@@ -11,6 +11,17 @@ import os
 import math
 
 
+def one_map():
+    file = "Debug1.png"
+
+    container = get_layer_from_file("./helpers/" + file)
+    container.layers[0].map()
+    container.pack()
+    container.save("done_" + file + "_map.png")
+
+
+
+
 def one_scaling_transforms():
     file = "band.jpg"
 
@@ -179,7 +190,7 @@ def get_layers_in_a_row(count, filename):
     return container
 
 start = time.time()
-one_adjust()
+one_map()
 end = time.time()
 print(str(end - start) + " " + " seconds")
     

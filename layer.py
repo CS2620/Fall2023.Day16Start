@@ -30,6 +30,50 @@ class Layer:
         self.offset_x, self.offset_y = offset_x, offset_y
         self.pixels = [0, 0, 0] * self.width * self.height
 
+    # def color_difference(self, one, two):
+    #     r = math.fabs(one[0] - two[0])
+    #     g = math.fabs(one[1] - two[1])
+    #     b = math.fabs(one[2] - two[2])
+    #     return r + g + b
+
+    def map(self):
+        # colors = (
+        #     (0,0,0),
+        #     (255,0,0),
+        #     (0,255,0),
+        #     (0,0,255),
+        #     (255,255,255))
+        
+        # all_colors = []
+        # for y in range(self.height):
+        #     for x in range(self.width):
+        #         pixel = self.get_pixel(x, y)
+        #         all_colors.append(pixel)
+
+        # print(set(all_colors))
+
+        # for color in set(all_colors):
+        #     print(str(color) + " " + str(all_colors.count(color)))
+            
+
+        # for y in range(self.height):
+        #     for x in range(self.width):
+        #         pixel = self.get_pixel(x, y)
+        #         best_index = -1
+        #         best_difference = 100000000
+        #         for i in range(len(colors)):
+        #             color = colors[i]
+        #             difference = self.color_difference(color, pixel)
+        #             if difference < best_difference:
+        #                 best_difference = difference
+        #                 best_index = i
+        #         print(best_index)
+        #         self.set_pixel(x,y,colors[best_index])
+
+
+
+
+
     def generate_histogram(self):
         layer = Layer(256, 100, 0, 0)
 

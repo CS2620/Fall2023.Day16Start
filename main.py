@@ -8,14 +8,58 @@ from color_conversion import rgb_to_cmyk
 import time
 import numpy as np
 import os
+import math
 
 
-
-def one_adjust():
-    file = "leather.jpg"
+def one_scaling_transforms():
+    file = "band.jpg"
 
     container = get_layer_from_file("./images/" + file)
-    container.add_layer(container.layers[0].alter_hue(0))
+    container.layers[0].scale_backward(.5,.5)
+    container.pack()
+    container.save("done_" + file + "_scale_backward.png")
+
+    container = get_layer_from_file("./images/" + file)
+    container.layers[0].scale_forward(.5,.5)
+    container.pack()
+    container.save("done_" + file + "_scale_forward.png")
+
+def one_advanced_transforms():
+    file = "beaches.jpg"
+
+    container = get_layer_from_file("./images/" + file)
+    container.layers[0].rotate_same_size(45*2*math.pi/360)
+    container.pack()
+    container.save("done_" + file + "_rotate_same_size.png")
+
+    container = get_layer_from_file("./images/" + file)
+    container.layers[0].rotate_expand(45*2*math.pi/360)
+    container.pack()
+    container.save("done_" + file + "_rotate_expand.png")
+
+def one_simple_transforms():
+    file = "beak.jpg"
+
+    container = get_layer_from_file("./images/" + file)
+    container.layers[0].flip_horizontal_axis()
+    container.pack()
+    container.save("done_" + file + "_flip_horizontal.png")
+
+    container = get_layer_from_file("./images/" + file)
+    container.layers[0].flip_vertical_axis()
+    container.pack()
+    container.save("done_" + file + "_flip_vertical.png")
+
+    container = get_layer_from_file("./images/" + file)
+    container.layers[0].rotate_counter_clockwise()
+    container.pack()
+    container.save("done_" + file + "_rotate_90.png")
+
+def one_adjust():
+    file = "band.jpg"
+
+    container = get_layer_from_file("./images/" + file)
+    container.add_layer(container.layers[0].alter_hue(.1))
     container.pack()
     container.save("done_" + file + "_h_adjusted.png")
 
@@ -30,7 +74,7 @@ def one_adjust():
     container.pack()
     container.save("done_" + file + "_v_adjusted.png")
 
-def one():
+def one_hsv():
     file = "leather.jpg"
 
     container = get_layer_from_file("./images/" + file)
@@ -48,8 +92,6 @@ def one():
     container.add_layer(container.layers[0].value_channel())
     container.pack()
     container.save("done_" + file + "_v.png")
-
-
 
 def one_cmyk():
     file = "leather.jpg"
@@ -74,7 +116,6 @@ def one_cmyk():
     container.add_layer(container.layers[0].black_channel())
     container.pack()
     container.save("done_" + file + "_k.png")
-
 
 def many():
     print("Start")
@@ -138,7 +179,7 @@ def get_layers_in_a_row(count, filename):
     return container
 
 start = time.time()
-one()
+one_adjust()
 end = time.time()
 print(str(end - start) + " " + " seconds")
     
